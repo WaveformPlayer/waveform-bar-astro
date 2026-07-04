@@ -325,6 +325,23 @@ export interface WaveformBarConfig {
 	 */
 	errorText?: string | null;
 
+	// ── Localizable player strings ─────────────────────────────────────
+	// Forwarded to the embedded player. Only seekValueText (the bar's visible
+	// seek slider) and unknownTrackText (its Media Session title fallback)
+	// have an effect; the bar hides the player's controls/info, so the rest
+	// are accepted for completeness but govern hidden UI.
+
+	/** Seek slider spoken `aria-valuetext` template — `%1$s` current, `%2$s` total. @default null */
+	seekValueText?: string | null;
+	/** Media Session title fallback when a track has no title. @default null */
+	unknownTrackText?: string | null;
+	/** Play button `aria-label` (hidden UI; forwarded for completeness). @default null */
+	playPauseLabel?: string | null;
+	/** Speed control `aria-label` (hidden UI; forwarded for completeness). @default null */
+	speedLabel?: string | null;
+	/** Artwork image alt text (hidden UI; forwarded for completeness). @default null */
+	artworkAlt?: string | null;
+
 	// ── Server-side action endpoints ───────────────────────────────────
 
 	/** Favorite / cart endpoints. See {@link WaveformBarActions}. */
