@@ -325,6 +325,14 @@ export interface WaveformBarConfig {
 	 */
 	errorText?: string | null;
 
+	/**
+	 * CORS mode for the embedded `<audio>` element. Left unset by default so
+	 * the player behaves like a native `<audio>` and never forces a CORS
+	 * request (which breaks playback of CDN media without CORS headers).
+	 * @default null
+	 */
+	crossOrigin?: 'anonymous' | 'use-credentials' | null;
+
 	// ── Localizable player strings ─────────────────────────────────────
 	// Forwarded to the embedded player. Only seekValueText (the bar's visible
 	// seek slider) and unknownTrackText (its Media Session title fallback)

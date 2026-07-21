@@ -110,6 +110,7 @@ describe('<WaveformBar> — init script', () => {
 				share: true,
 				shareParam: 'ts',
 				errorText: 'Could not load audio',
+				crossOrigin: 'anonymous',
 			},
 		});
 
@@ -121,6 +122,7 @@ describe('<WaveformBar> — init script', () => {
 		expect(html).toContain('"share":true');
 		expect(html).toContain('"shareParam":"ts"');
 		expect(html).toContain('"errorText":"Could not load audio"');
+		expect(html).toContain('"crossOrigin":"anonymous"');
 	});
 
 	it('passes the hostId through as WB_HOST_ID', async () => {
