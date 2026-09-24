@@ -15,7 +15,7 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import WaveformBarRaw from '../src/WaveformBar.astro';
-import type { WaveformBarProps } from '../src/types';
+import type { WaveformBarConfig, WaveformBarProps } from '../src/types';
 
 const WaveformBar = WaveformBarRaw as Parameters<
 	AstroContainer['renderToString']
@@ -123,6 +123,26 @@ describe('<WaveformBar> — init script', () => {
 		expect(html).toContain('"shareParam":"ts"');
 		expect(html).toContain('"errorText":"Could not load audio"');
 		expect(html).toContain('"crossOrigin":"anonymous"');
+	});
+
+	it('flows waveformGradient, gradient colour stops, barRadius and showTime through to WB_CFG', async () => {
+		// Typed as WaveformBarConfig on purpose: this literal is the type
+		// test — `tsc` rejected every one of these keys/values before.
+		const config: WaveformBarConfig = {
+			waveformGradient: 'horizontal',
+			waveformColor: ['#fafafa', '#71717a'],
+			progressColor: ['#22d3ee', '#0e7490'],
+			barRadius: 0,
+			showTime: false,
+		};
+		const html = await render({ config });
+
+		expect(html).toContain('"waveformGradient":"horizontal"');
+		expect(html).toContain('"waveformColor":["#fafafa","#71717a"]');
+		expect(html).toContain('"progressColor":["#22d3ee","#0e7490"]');
+		// 0 is a real value (square caps), not "unset" — it must survive.
+		expect(html).toContain('"barRadius":0');
+		expect(html).toContain('"showTime":false');
 	});
 
 	it('passes the hostId through as WB_HOST_ID', async () => {

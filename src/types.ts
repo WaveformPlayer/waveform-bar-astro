@@ -175,7 +175,9 @@ export interface WaveformBarConfig {
 	showVolume?: boolean;
 	/** Show the mute toggle. @default true */
 	showMute?: boolean;
-	/** Show the current / total time readout. @default true */
+	/** Show the current / total time readout. `false` hides it
+	 *  (waveform-bar 1.12.0+; older bars ignored this and always showed
+	 *  it). @default true */
 	showTime?: boolean;
 	/** Make the title clickable — when true the title links to the
 	 *  track's `data-wb-link`. @default true */
@@ -220,16 +222,34 @@ export interface WaveformBarConfig {
 	/** Bar/block width in pixels. @default 2 */
 	barWidth?: number;
 
-	/** Gap between bars in pixels. @default 0 */
+	/** Gap between bars in pixels (`0` = solid "blob"). @default 2 */
 	barSpacing?: number;
 
-	/** Colour of the unplayed waveform (CSS colour). Auto from theme
-	 *  when unset. */
-	waveformColor?: string | null;
+	/**
+	 * Rounded bar-cap radius in pixels. `0` = square caps; `null` keeps
+	 * the underlying player's default. Requires waveform-bar 1.12.0+
+	 * (older bars ignore it).
+	 *
+	 * @default null
+	 */
+	barRadius?: number | null;
 
-	/** Colour of the played-through portion (CSS colour). Auto from
-	 *  theme when unset. */
-	progressColor?: string | null;
+	/** Colour of the unplayed waveform — a CSS colour, or an array of
+	 *  colour stops for a gradient (e.g. `['#fafafa', '#71717a']`).
+	 *  Auto from theme when unset. */
+	waveformColor?: string | string[] | null;
+
+	/** Colour of the played-through portion — a CSS colour, or an array
+	 *  of colour stops for a gradient. Auto from theme when unset. */
+	progressColor?: string | string[] | null;
+
+	/**
+	 * Gradient axis when {@link waveformColor} / {@link progressColor}
+	 * is an array of stops.
+	 *
+	 * @default 'vertical'
+	 */
+	waveformGradient?: 'vertical' | 'horizontal' | 'diagonal';
 
 	/** Default marker line colour when a marker provides no override. */
 	markerColor?: string;
