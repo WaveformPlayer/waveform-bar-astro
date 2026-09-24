@@ -58,8 +58,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "@arraypress/waveform-bar": "^1.10.0",
-    "@arraypress/waveform-player": "^1.7.2",
+    "@arraypress/waveform-bar": "^1.11.0",
+    "@arraypress/waveform-player": "^1.8.0",
     "astro": "^6.0.0 || ^7.0.0"
   },
   "scripts": {
@@ -68,8 +68,8 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@arraypress/waveform-bar": "^1.10.0",
-    "@arraypress/waveform-player": "^1.7.2",
+    "@arraypress/waveform-bar": "^1.11.0",
+    "@arraypress/waveform-player": "^1.8.0",
     "astro": "^7.0.3",
     "typescript": "^6.0.3",
     "vitest": "^4.1.9"
