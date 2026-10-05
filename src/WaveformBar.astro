@@ -207,6 +207,22 @@ const wbConfig = config;
 			 * above keeps it stable across navigations regardless. */
 		}
 
+		/* KEEP A TRIGGER INSIDE A LINK FROM NAVIGATING. A play button is
+		 * often nested in a product card's <a>. waveform-bar cancels the
+		 * click in a bubbling document listener, but Astro's
+		 * <ClientRouter /> also listens on the document, registers first,
+		 * and so navigates before that cancel happens: the track starts
+		 * and the page changes under it. Cancelling the default in the
+		 * CAPTURE phase runs before both. It deliberately does NOT stop
+		 * propagation, so waveform-bar's own handler still runs and still
+		 * plays, queues or toggles the track. */
+		document.addEventListener('click', function (e) {
+			var t = e.target;
+			if (t && t.closest && t.closest('[data-wb-play], [data-wb-queue]')) {
+				e.preventDefault();
+			}
+		}, true);
+
 		document.addEventListener('astro:page-load', initBar);
 		if (document.readyState !== 'loading') {
 			initBar();

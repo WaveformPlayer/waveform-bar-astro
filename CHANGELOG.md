@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] — 2026-10-06
+
+### Fixed
+
+- **A play/queue trigger inside a link no longer navigates under
+  `<ClientRouter />`.** waveform-bar cancels trigger clicks in a bubbling
+  document listener, but Astro's router registers on the document first
+  and navigated before the cancel, so clicking play on a product card
+  started the track and changed the page. `<WaveformBar>` now cancels the
+  default for `[data-wb-play]` / `[data-wb-queue]` clicks in the capture
+  phase, without stopping propagation, so the library still handles the
+  click. Found in SampleGrid.
+
 ## [0.5.0] — 2026-09-24
 
 ### Added

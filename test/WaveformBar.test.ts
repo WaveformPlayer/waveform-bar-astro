@@ -72,6 +72,13 @@ describe('<WaveformBar> — persist host', () => {
 // ─── Init script presence + config ───────────────────────────────────────
 
 describe('<WaveformBar> — init script', () => {
+	it('cancels trigger clicks in the CAPTURE phase so ClientRouter cannot navigate first', async () => {
+		const html = await render();
+		// A capture-phase click listener that preventDefaults trigger clicks…
+		expect(html).toMatch(/addEventListener\('click',[\s\S]*?\[data-wb-play\], \[data-wb-queue\][\s\S]*?preventDefault\(\)[\s\S]*?\}, true\)/);
+		// …without stopping propagation, so waveform-bar's own handler still runs.
+		expect(html).not.toMatch(/stopPropagation|stopImmediatePropagation/);
+	});
 	it('ships an inline script that references window.WaveformBar', async () => {
 		const html = await render();
 		expect(html).toContain('window.WaveformBar');
