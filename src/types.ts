@@ -27,7 +27,7 @@
  * client-side scripts — that's the framework-agnostic path the core
  * library is designed for.
  *
- * @see {@link https://github.com/arraypress/waveform-bar} — core library
+ * @see {@link https://github.com/WaveformPlayer/waveform-bar} — core library
  */
 
 import type { WaveformStyle } from './waveform-style';

@@ -40,10 +40,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arraypress/waveform-bar-astro.git"
+    "url": "git+https://github.com/WaveformPlayer/waveform-bar-astro.git"
   },
   "bugs": {
-    "url": "https://github.com/arraypress/waveform-bar-astro/issues"
+    "url": "https://github.com/WaveformPlayer/waveform-bar-astro/issues"
   },
   "homepage": "https://waveformplayer.com",
   "funding": {
